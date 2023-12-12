@@ -1,6 +1,7 @@
 package com.example.prueba05;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -35,7 +36,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mostrarDialogo("Agregar sitio");
+                //mostrarDialogo("Agregar sitio");
+                Intent intent = new Intent(MainActivity.this, PickUpNew.class);
+                startActivity(intent);
             }
         });
 

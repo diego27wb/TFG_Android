@@ -3,8 +3,12 @@ package com.example.prueba05;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,31 +22,37 @@ public class PickUpNew extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pickup_new);
 
-        Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        Spinner spinner = findViewById(R.id.spinner);
+
+        // Define the string array inline
+        String[] inlineOptions = {"XS", "S", "M", "L", "XL", "XXL"};
+
+        // Create an ArrayAdapter using the defined string array and a default spinner layout
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_spinner_item,
+                inlineOptions
+        );
+
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+
+        // Set a listener to handle the selected item
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                mostrarDialogo("Add PickUp");
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Show a Toast message with the selected item
+                Toast.makeText(getApplicationContext(), "Selected: " + parentView.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Do nothing here
             }
         });
-
-    }
-
-    private void mostrarDialogo(String mensaje) {
-        // Inflar el diseño personalizado
-        View customView = getLayoutInflater().inflate(R.layout.dialog_custom_layout, null);
-
-        // Obtener una referencia al EditText en el diseño personalizado
-        final EditText editText = customView.findViewById(R.id.editText);
-
-        // Configurar el cuadro de diálogo con el diseño personalizado
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(mensaje)
-                .setTitle("Añadir sitio")
-                .setView(customView);
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
     }
 
 }
