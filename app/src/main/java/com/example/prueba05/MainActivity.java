@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -31,6 +32,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(MainActivity.this);
+
+        if (getIntent().hasExtra("currentLocation")){
+
+            LatLng currentLocation = getIntent().getParcelableExtra("currentLocation");
+            showToast(currentLocation.toString());
+            myMap.addMarker(new MarkerOptions().position(currentLocation).title("New pickup")).setTag(0);
+            myMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
+
+        }
 
         Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -118,6 +128,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         myMap.moveCamera(CameraUpdateFactory.newLatLng(lalaguna));
 
         myMap.setOnMarkerClickListener(this);
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
 }
