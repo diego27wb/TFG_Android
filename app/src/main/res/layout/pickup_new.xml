@@ -25,7 +25,6 @@
         android:id="@+id/comboBoxTitle"
         android:layout_width="347dp"
         android:layout_height="37dp"
-        android:drawableRight="@drawable/ic_launcher_foreground"
         android:drawablePadding="10dp"
         android:padding="10dp"
         android:text="Size"

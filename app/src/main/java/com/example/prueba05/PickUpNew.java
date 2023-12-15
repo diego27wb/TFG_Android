@@ -44,8 +44,8 @@ public class PickUpNew extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // Show a Toast message with the selected item
-                Toast.makeText(getApplicationContext(), "Selected: " + parentView.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
+                // Do nothing
+                String option = parentView.getItemAtPosition(position).toString();
             }
 
             @Override
