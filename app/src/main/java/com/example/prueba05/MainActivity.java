@@ -37,8 +37,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             LatLng currentLocation = getIntent().getParcelableExtra("currentLocation");
             showToast(currentLocation.toString());
-            myMap.addMarker(new MarkerOptions().position(currentLocation).title("New pickup")).setTag(0);
-            myMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
+            agregarMarcadorConTexto("New pickup", currentLocation);
+
+            //myMap.addMarker(new MarkerOptions().position(currentLocation).title("New pickup")).setTag(0);
+            //myMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
 
         }
 
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         String textoIngresado = editText.getText().toString();
 
                         // Hacer algo con la cadena ingresada (por ejemplo, agregar un marcador con ese texto)
-                        agregarMarcadorConTexto(textoIngresado);
+                        //agregarMarcadorConTexto(textoIngresado);
                     }
                 });
 
@@ -80,12 +82,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         dialog.show();
     }
 
-    private void agregarMarcadorConTexto(String texto) {
+    private void agregarMarcadorConTexto(String texto, LatLng location) {
         // Aquí puedes hacer lo que quieras con la cadena ingresada
         // Por ejemplo, agregar un marcador con ese texto
-        LatLng random = new LatLng(40, -3);
-        myMap.addMarker(new MarkerOptions().position(random).title(texto).draggable(true)).setTag(0);
-        myMap.moveCamera(CameraUpdateFactory.newLatLng(random));
+        //LatLng random = new LatLng(40, -3);
+        myMap.addMarker(new MarkerOptions().position(location).title(texto).draggable(true)).setTag(0);
+        myMap.moveCamera(CameraUpdateFactory.newLatLng(location));
     }
 
 

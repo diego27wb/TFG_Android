@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -42,6 +43,7 @@ public class PickUpNew extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pickup_new);
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         PickUp newPickUp = new PickUp();
         EditText description = findViewById(R.id.comments);
@@ -82,7 +84,7 @@ public class PickUpNew extends AppCompatActivity{
                 // Do nothing
                 String option = parentView.getItemAtPosition(position).toString();
 
-                newPickUp.setSize(option);
+                newPickUp.setSize(SizeEnum.valueOf(option));
             }
 
             @Override
