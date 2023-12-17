@@ -18,14 +18,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -43,9 +38,9 @@ public class PickUpNew extends AppCompatActivity{
         setContentView(R.layout.pickup_new);
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        PickUp newPickUp = new PickUp();
+        PickUpBueno newPickUpBueno = new PickUpBueno();
         EditText description = findViewById(R.id.comments);
-        newPickUp.setDescription(description.getText().toString());
+        newPickUpBueno.setDescription(description.getText().toString());
         Button locationButton = findViewById(R.id.btnLocation);
 
         //PODRIA HACER QUE PILLE LA UBICACION AUTOMATICAMENTE O DE ALGUNA FORMA
@@ -82,7 +77,7 @@ public class PickUpNew extends AppCompatActivity{
                 // Do nothing
                 String option = parentView.getItemAtPosition(position).toString();
 
-                newPickUp.setSize(SizeEnum.valueOf(option));
+                newPickUpBueno.setSize(SizeEnum.valueOf(option));
             }
 
             @Override

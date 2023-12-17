@@ -55,32 +55,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
 
     }
-    private void mostrarDialogo(String mensaje) {
-        // Inflar el diseño personalizado
-        View customView = getLayoutInflater().inflate(R.layout.dialog_custom_layout, null);
-
-        // Obtener una referencia al EditText en el diseño personalizado
-        final EditText editText = customView.findViewById(R.id.editText);
-
-        // Configurar el cuadro de diálogo con el diseño personalizado
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(mensaje)
-                .setTitle("Añadir sitio")
-                .setView(customView)
-                .setPositiveButton("Agregar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Obtener el texto ingresado en el EditText
-                        String textoIngresado = editText.getText().toString();
-
-                        // Hacer algo con la cadena ingresada (por ejemplo, agregar un marcador con ese texto)
-                        //agregarMarcadorConTexto(textoIngresado);
-                    }
-                });
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
 
     private void agregarMarcadorConTexto(String texto, LatLng location) {
         // Aquí puedes hacer lo que quieras con la cadena ingresada
