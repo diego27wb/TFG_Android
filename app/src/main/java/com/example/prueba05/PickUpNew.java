@@ -32,13 +32,11 @@ import com.google.android.gms.tasks.Task;
 
 public class PickUpNew extends AppCompatActivity{
     private FusedLocationProviderClient fusedLocationClient;
-    private LocationCallback locationCallback;
 
     //PRUEBAS
     private boolean locationPermissionGranted;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private Location lastKnownLocation;
-    private final LatLng defaultLocation = new LatLng(-33.8523341, 151.2106085);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,28 +96,6 @@ public class PickUpNew extends AppCompatActivity{
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    private void requestLocationUpdates(){
-        LocationRequest locationRequest = new LocationRequest();
-        locationRequest.setInterval(10000);
-        locationRequest.setFastestInterval(5000);
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-
-        locationCallback = new LocationCallback() {
-            @Override
-            public void onLocationResult(LocationResult locationResult){
-                if (locationResult == null){
-                    return;
-                }
-                for (Location location : locationResult.getLocations()){
-                    LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                    updateCurrentLocationMarker(latLng);
-                }
-            }
-
-            //fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null);
-        };
-    }
-
     private void updateCurrentLocationMarker(LatLng latLng){
         Intent intent = new Intent(PickUpNew.this, MainActivity.class);
         intent.putExtra("currentLocation", latLng);
@@ -163,10 +139,6 @@ public class PickUpNew extends AppCompatActivity{
         }
     }
 
-    private void updateLocationUI(LatLng location){
-        showToast("AHORA PASA EL MARKER");
-    }
-
     /**
      * Gets the current location of the device, and positions the map's camera.
      */
@@ -186,7 +158,8 @@ public class PickUpNew extends AppCompatActivity{
                             lastKnownLocation = task.getResult();
                             if (lastKnownLocation != null) {
                                 LatLng location = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
-                                updateCurrentLocationMarker(location);
+                                //updateCurrentLocationMarker(location);
+                                showToast(location.toString());
                             }
                         }
                     }
