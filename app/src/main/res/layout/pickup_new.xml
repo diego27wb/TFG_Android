@@ -20,6 +20,31 @@
         tools:layout_editor_absoluteX="-1dp"
         tools:layout_editor_absoluteY="0dp" />
 
+
+    <EditText
+        android:id="@+id/atributo1EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Atributo 1"
+        android:inputType="text"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/atributo2EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Atributo 2"
+        android:inputType="text"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/guardarButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Guardar"
+        tools:ignore="MissingConstraints" />
+
     <Button
         android:id="@+id/btnLocation"
         android:layout_width="wrap_content"

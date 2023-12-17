@@ -91,11 +91,6 @@ public class PickUpNew extends AppCompatActivity{
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    private void updateCurrentLocationMarker(LatLng latLng){
-        Intent intent = new Intent(PickUpNew.this, MainActivity.class);
-        intent.putExtra("currentLocation", latLng);
-        startActivity(intent);
-    }
 
     //PRUEBAS
     private void getLocationPermission() {
