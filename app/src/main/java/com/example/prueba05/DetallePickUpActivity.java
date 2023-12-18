@@ -38,10 +38,8 @@ public class DetallePickUpActivity extends AppCompatActivity {
         Geocoder geocoder = new Geocoder(DetallePickUpActivity.this, Locale.getDefault());
         try {
             List<Address> listAddress = geocoder.getFromLocation(pickUp.getPosition().getLatitude(),pickUp.getPosition().getLongitude(), 1);
-            //List<Address> listAddress = geocoder.getFromLocation(1.38,103.27, 1);
             if (listAddress.size()>0){
                 location.setText(listAddress.get(0).getCountryName().toString());
-                showToast(listAddress.get(0).getCountryCode().toString());
             }
         } catch(IOException e){
             showToast("ERROR");
