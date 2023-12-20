@@ -135,7 +135,7 @@ public class AgregarPickUpActivity extends AppCompatActivity {
         builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
+                //do-nothing
             }
         });
         builder.show();

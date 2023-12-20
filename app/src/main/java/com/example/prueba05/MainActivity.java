@@ -17,9 +17,14 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback,GoogleMap.OnMarkerClickListener {
 
@@ -32,44 +37,45 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(MainActivity.this);
-
-        if (getIntent().hasExtra("currentLocation")){
-
-            LatLng currentLocation = getIntent().getParcelableExtra("currentLocation");
-            showToast(currentLocation.toString());
-            agregarMarcadorConTexto("New pickup", currentLocation);
-
-            //myMap.addMarker(new MarkerOptions().position(currentLocation).title("New pickup")).setTag(0);
-            //myMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
-
-        }
-
-        Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //mostrarDialogo("Agregar sitio");
-                Intent intent = new Intent(MainActivity.this, PickUpNew.class);
-                startActivity(intent);
-            }
-        });
-
     }
 
-    private void agregarMarcadorConTexto(String texto, LatLng location) {
-        // Aquí puedes hacer lo que quieras con la cadena ingresada
-        // Por ejemplo, agregar un marcador con ese texto
-        //LatLng random = new LatLng(40, -3);
-        myMap.addMarker(new MarkerOptions().position(location).title(texto).draggable(true)).setTag(0);
+    private void agregarCentrosDeReciclaje() {
+        HashMap<LatLng, String> centros = new HashMap<>();
+        centros.put(new LatLng(52.5200, 13.4050),"Berlin");
+        centros.put(new LatLng(41.89193, 12.51133),"Rome");
+        centros.put(new LatLng(51.50853, -0.12574),"London");
+        centros.put(new LatLng(50.08804, 14.42076),"Prague");
+        centros.put(new LatLng(47.36667, 8.55),"Zurich");
+
+        for (LatLng location : centros.keySet()) {
+            String nombreCentro = centros.get(location);
+            agregarMarcadorCentroReciclaje(nombreCentro, location);
+        }
+    }
+
+    private void agregarMarcadorCentroReciclaje(String texto, LatLng location){
+        float colorHue = 200;
+        BitmapDescriptor blueMarkerIcon = BitmapDescriptorFactory.defaultMarker(colorHue);
+        MarkerOptions markerOptions = new MarkerOptions()
+                .position(location)
+                .title(texto)
+                .icon(blueMarkerIcon);
+
+        Marker marker = myMap.addMarker(markerOptions);
+        marker.setTag(0);
+    }
+
+    private void agregarMarcadorConTexto(String texto, LatLng location, String comment, SizeEnum size) {
+        MarkerOptions markerOptions = new MarkerOptions()
+                .position(location)
+                .title(texto)
+                .snippet(comment + "\n\nSize: " + size);
+
+        Marker marker = myMap.addMarker(markerOptions);
+        marker.setTag(0);
         myMap.moveCamera(CameraUpdateFactory.newLatLng(location));
     }
 
-
-    private void addMap() {
-        LatLng random = new LatLng(40, -3);
-        myMap.addMarker(new MarkerOptions().position(random).title("Random").draggable(true)).setTag(0);
-        myMap.moveCamera(CameraUpdateFactory.newLatLng(random));
-    }
 
     @Override
     public boolean onMarkerClick(final Marker marker){
@@ -79,31 +85,50 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private void dialogoAdicional(final Marker clickedMarker){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("")
+        String snippet = clickedMarker.getSnippet();
+        builder.setMessage(snippet)
                 .setTitle(clickedMarker.getTitle())
-                .setNegativeButton("Eliminar", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // Elimina el marcador que se hizo clic
-                        if (clickedMarker != null) {
-                            clickedMarker.remove();
-                        }
+                        //do-nothing
                     }
                 });
 
         AlertDialog dialog = builder.create();
         dialog.show();
+        dialog.setIcon(R.drawable.pickup_icon);
+        myMap.moveCamera(CameraUpdateFactory.newLatLng(clickedMarker.getPosition()));
     }
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
 
         myMap = googleMap;
 
-        LatLng lalaguna = new LatLng(28.4853, -16.32014);
-        myMap.addMarker(new MarkerOptions().position(lalaguna).title("La Laguna"));
-        myMap.moveCamera(CameraUpdateFactory.newLatLng(lalaguna));
-
         myMap.setOnMarkerClickListener(this);
+
+        /**
+         * Agregar centros de reciclaje
+         */
+        agregarCentrosDeReciclaje();
+
+        if (getIntent().hasExtra("pickUps") && getIntent().hasExtra("pickUpsTitles") &&
+                getIntent().hasExtra("pickUpsComments") && getIntent().hasExtra("pickUpsSizes")){
+            ArrayList<LatLng> pickUpLocations = getIntent().getParcelableArrayListExtra("pickUps");
+            ArrayList<String> pickUpTitles = getIntent().getStringArrayListExtra("pickUpsTitles");
+            ArrayList<String> pickUpComments = getIntent().getStringArrayListExtra("pickUpsComments");
+            ArrayList<SizeEnum> pickUpSizes = (ArrayList<SizeEnum>) getIntent().getSerializableExtra("pickUpsSizes");
+
+            if (pickUpLocations != null && pickUpTitles != null && pickUpComments != null && pickUpSizes != null){
+                int i = 0;
+                for (LatLng location : pickUpLocations){
+                    agregarMarcadorConTexto(pickUpTitles.get(i), location, pickUpComments.get(i), pickUpSizes.get(i));
+                    i++;
+                }
+            }else{
+                showToast("HOLAAAAAAA");
+            }
+        }
     }
 
     private void showToast(String message) {

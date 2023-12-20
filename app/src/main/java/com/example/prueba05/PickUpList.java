@@ -35,12 +35,14 @@ public class PickUpList extends AppCompatActivity {
         listView.setAdapter(pickUpAdapter);
 
         //AÑADO PICKUPS DE PRUEBA
-        SerializableLatLng location = new SerializableLatLng(40.41831, -3.70275);
+        SerializableLatLng location = new SerializableLatLng(48.856666666667, 2.3522222222222);
+        SerializableLatLng location2 = new SerializableLatLng(39.56939, 2.65024);
+        SerializableLatLng location3 = new SerializableLatLng(41.149472222222, -8.6107777777778);
 
+        pickUpList.add(new PickUp("Basura", "image.png", location, "Buena descripion", SizeEnum.L));
+        pickUpList.add(new PickUp("Plastico", "image.png", location2, "Buena descripion", SizeEnum.XL));
+        pickUpList.add(new PickUp("Bolsas", "image.png", location3, "Buena descripion", SizeEnum.XXL));
 
-        pickUpList.add(new PickUp("Basura", "image.png", location, "Buena descripion", SizeEnum.L));
-        pickUpList.add(new PickUp("Basura", "image.png", location, "Buena descripion", SizeEnum.L));
-        pickUpList.add(new PickUp("Basura", "image.png", location, "Buena descripion", SizeEnum.L));
 
         // Configura el evento de clic en la lista
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -61,6 +63,32 @@ public class PickUpList extends AppCompatActivity {
                 // Abre la actividad para agregar un nuevo PickUp
                 Intent intent = new Intent(PickUpList.this, AgregarPickUpActivity.class);
                 startActivityForResult(intent, 1);
+            }
+        });
+
+        // Configura el botón para pasar los pickups al mapa
+        Button pickupMapsButton = findViewById(R.id.pickupMapsButton);
+        pickupMapsButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PickUpList.this, MainActivity.class);
+                ArrayList<LatLng> pickUpLocations = new ArrayList<>();
+                ArrayList<String> pickUpTitles = new ArrayList<>();
+                ArrayList<String> pickUpComments = new ArrayList<>();
+                ArrayList<SizeEnum> pickUpSize = new ArrayList<>();
+
+                for (PickUp pickUp : pickUpList){
+                    pickUpLocations.add(new LatLng(pickUp.getPosition().getLatitude(), pickUp.getPosition().getLongitude()));
+                    pickUpTitles.add(pickUp.getTitulo());
+                    pickUpComments.add(pickUp.getDescription());
+                    pickUpSize.add(pickUp.getSize());
+                }
+                intent.putParcelableArrayListExtra("pickUps", pickUpLocations);
+                intent.putStringArrayListExtra("pickUpsTitles", pickUpTitles);
+                intent.putStringArrayListExtra("pickUpsComments", pickUpComments);
+                intent.putExtra("pickUpsSizes", pickUpSize);
+                startActivity(intent);
             }
         });
     }

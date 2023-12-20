@@ -1,6 +1,8 @@
 package com.example.prueba05;
 
-public enum SizeEnum {
+import java.io.Serializable;
+
+public enum SizeEnum implements Serializable {
     XS(1),
     S(2),
     M(5),
