@@ -1,18 +1,27 @@
 package com.example.prueba05;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Instrumentation;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -31,6 +40,7 @@ public class AgregarPickUpActivity extends AppCompatActivity {
     private Location lastKnownLocation;
     private SerializableLatLng pickUpLocation;
     private SizeEnum size;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +50,8 @@ public class AgregarPickUpActivity extends AppCompatActivity {
         final EditText titulo = findViewById(R.id.titulo);
         final EditText description = findViewById(R.id.comments);
         final Spinner spinner = findViewById(R.id.spinner);
+        final Button photoButton = findViewById(R.id.btnCamera);
+        imageView = findViewById(R.id.imageView);
 
         /**
          * Localizacion
@@ -51,6 +63,12 @@ public class AgregarPickUpActivity extends AppCompatActivity {
         /**
          * Foto
          */
+        photoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dispatchTakePictureIntent();
+            }
+        });
 
         /**
          * Spinner
@@ -83,23 +101,63 @@ public class AgregarPickUpActivity extends AppCompatActivity {
         guardarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Obtiene los valores ingresados por el usuario
-                String titulo_pickup = titulo.getText().toString();
-                String comments = description.getText().toString();
+                //TODO añadir la imagen aqui también
+                if (TextUtils.isEmpty(titulo.getText()) || size == null){
+                    incompleteFieldsError();
+                }
+                else {
+                    // Obtiene los valores ingresados por el usuario
+                    String titulo_pickup = titulo.getText().toString();
+                    String comments = description.getText().toString();
 
-                // Crea un nuevo PickUp con los valores ingresados
-                PickUp pickUp = new PickUp(titulo_pickup,"", pickUpLocation, comments, size);
+                    // Crea un nuevo PickUp con los valores ingresados
+                    PickUp pickUp = new PickUp(titulo_pickup, "photo.png", pickUpLocation, comments, size);
 
-                // Retorna el nuevo PickUp a la actividad principal
-                Intent resultIntent = new Intent();
-                resultIntent.putExtra("nuevoPickUp", pickUp);
-                setResult(RESULT_OK, resultIntent);
+                    // Retorna el nuevo PickUp a la actividad principal
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra("nuevoPickUp", pickUp);
+                    setResult(RESULT_OK, resultIntent);
 
-                // Cierra la actividad de agregar PickUp
-                finish();
+                    // Cierra la actividad de agregar PickUp
+                    finish();
+                }
             }
         });
     }
+
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
+    private void incompleteFieldsError(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Incomplete fields");
+        builder.setMessage("Some fields are mandatory to fill.\nPlease, complete them.");
+        builder.setIcon(R.drawable.ic_alert_icon);
+        builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        builder.show();
+    }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            imageView.setImageBitmap(imageBitmap);
+        }
+    }
+
 
     private void getLocationPermission() {
         if (ContextCompat.checkSelfPermission(this.getApplicationContext(),

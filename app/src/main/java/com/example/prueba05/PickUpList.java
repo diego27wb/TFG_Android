@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ public class PickUpList extends AppCompatActivity {
 
         //AÑADO PICKUPS DE PRUEBA
         SerializableLatLng location = new SerializableLatLng(40.41831, -3.70275);
+
 
         pickUpList.add(new PickUp("Basura", "image.png", location, "Buena descripion", SizeEnum.L));
         pickUpList.add(new PickUp("Basura", "image.png", location, "Buena descripion", SizeEnum.L));
