@@ -3,6 +3,8 @@ package com.example.prueba05;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -10,8 +12,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -21,11 +25,14 @@ import java.util.List;
 public class PickUpList extends AppCompatActivity {
     private List<PickUp> pickUpList;
     private PickUpAdapter pickUpAdapter;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pickup_list);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         // Inicializa la lista y el adaptador
         pickUpList = new ArrayList<>();
@@ -91,6 +98,25 @@ public class PickUpList extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.opcion1) {
+            Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
+        } else if(id == R.id.buscar) {
+            Toast.makeText(this, "OPRIMISTE BUSCAR", Toast.LENGTH_SHORT).show();
+        }
+
+        return true;
     }
 
     // Método para manejar el resultado de la actividad de agregar PickUp
