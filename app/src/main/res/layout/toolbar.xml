@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
-    app:title="AppBar Personalizado"
+    app:title="PickUps"
     app:titleTextColor="#FFFFFF"
     app:popupTheme="@style/AppTheme.PopupOverlay">
 

@@ -23,12 +23,15 @@
 
     <Button
         android:id="@+id/pickupMapsButton"
-        android:layout_width="62dp"
+        android:layout_width="55dp"
         android:layout_height="wrap_content"
         android:layout_gravity="top|end"
-        android:layout_marginTop="65dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="19dp"
+        android:background="@drawable/roundedbutton"
         android:drawableBottom="@drawable/maps_icon"
+        android:elevation="10dp"
+        android:stateListAnimator="@null"
         android:text="Map"
         android:textSize="10dp" />
 
