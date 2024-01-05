@@ -1,8 +1,6 @@
 package com.example.prueba05;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Instrumentation;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -21,9 +19,9 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -50,8 +48,8 @@ public class AgregarPickUpActivity extends AppCompatActivity {
         final EditText titulo = findViewById(R.id.titulo);
         final EditText description = findViewById(R.id.comments);
         final Spinner spinner = findViewById(R.id.spinner);
-        final Button photoButton = findViewById(R.id.btnCamera);
-        imageView = findViewById(R.id.imageView);
+        CardView photoButton = findViewById(R.id.btnCamera);
+        imageView = findViewById(R.id.imageView12);
 
         /**
          * Localizacion

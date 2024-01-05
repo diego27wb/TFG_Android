@@ -9,29 +9,30 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="218dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="64dp"
-        android:fontFamily="@font/milestone"
-        android:text="PickUps"
-        android:textAlignment="center"
-        android:textSize="50sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="218dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/roboto"
-        android:text="Recycle for a brighter tomorrow"
-        android:textAlignment="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="218dp"
+            android:layout_height="63dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="64dp"
+            android:fontFamily="@font/coolvetica"
+            android:text="PickUps"
+            android:textAlignment="center"
+            android:textSize="50sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="218dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/coolvetica"
+            android:text="Recycle for a brighter tomorrow"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -73,7 +74,7 @@
                     android:layout_below="@id/imageView5"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/roboto"
+                    android:fontFamily="@font/coolvetica"
                     android:text="Map" />
 
                 <ImageView
@@ -105,7 +106,7 @@
                     android:layout_below="@id/imageView4"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/roboto"
+                    android:fontFamily="@font/coolvetica"
                     android:text="Add PickUp" />
 
                 <ImageView
@@ -151,7 +152,7 @@
                     android:layout_below="@id/imageView6"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/roboto"
+                    android:fontFamily="@font/coolvetica"
                     android:text="Events" />
 
                 <ImageView
@@ -183,7 +184,7 @@
                     android:layout_below="@id/imageView8"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/roboto"
+                    android:fontFamily="@font/coolvetica"
                     android:text="Ranking" />
 
                 <ImageView
@@ -227,7 +228,7 @@
                     android:layout_below="@id/imageView10"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/roboto"
+                    android:fontFamily="@font/coolvetica"
                     android:text="Profile" />
 
                 <ImageView
@@ -259,7 +260,7 @@
                     android:layout_below="@id/imageView12"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/roboto"
+                    android:fontFamily="@font/coolvetica"
                     android:text="Help" />
 
                 <ImageView
