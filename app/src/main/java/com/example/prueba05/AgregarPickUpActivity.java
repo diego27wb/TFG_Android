@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,11 +28,19 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
-public class AgregarPickUpActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class AgregarPickUpActivity extends AppCompatActivity implements OnMapReadyCallback {
     private FusedLocationProviderClient fusedLocationClient;
     private boolean locationPermissionGranted;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
@@ -39,7 +48,7 @@ public class AgregarPickUpActivity extends AppCompatActivity {
     private SerializableLatLng pickUpLocation;
     private SizeEnum size;
     private ImageView imageView;
-
+    private GoogleMap myMap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +58,7 @@ public class AgregarPickUpActivity extends AppCompatActivity {
         final EditText description = findViewById(R.id.comments);
         final Spinner spinner = findViewById(R.id.spinner);
         CardView photoButton = findViewById(R.id.btnCamera);
-        imageView = findViewById(R.id.imageView12);
+        imageView = findViewById(R.id.imageView);
 
         /**
          * Localizacion
@@ -57,7 +66,8 @@ public class AgregarPickUpActivity extends AppCompatActivity {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getLocationPermission();
         getDeviceLocation();
-
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(AgregarPickUpActivity.this);
         /**
          * Foto
          */
@@ -170,6 +180,13 @@ public class AgregarPickUpActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+
+        myMap = googleMap;
+
+    }
+
+    @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -207,6 +224,7 @@ public class AgregarPickUpActivity extends AppCompatActivity {
                                 SerializableLatLng pickUpLocation1 = new SerializableLatLng(location.latitude, location.longitude);
                                 //pickUpLocation.setLongitude(location.longitude);
                                 setPickUpLocation(pickUpLocation1);
+                                //localizationView.setText("Localization: " + pickUpLocation.toString());
                             }
                         }
                     }
@@ -223,5 +241,13 @@ public class AgregarPickUpActivity extends AppCompatActivity {
 
     public void setPickUpLocation(SerializableLatLng location){
         this.pickUpLocation = location;
+        LatLng location1 = new LatLng(pickUpLocation.getLatitude(), pickUpLocation.getLongitude());
+        MarkerOptions markerOptions = new MarkerOptions()
+                .position(location1)
+                .title("Your location");
+
+        Marker marker = myMap.addMarker(markerOptions);
+        marker.setTag(0);
+        myMap.moveCamera(CameraUpdateFactory.newLatLng(location1));
     }
 }
