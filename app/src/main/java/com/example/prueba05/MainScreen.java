@@ -90,7 +90,8 @@ public class MainScreen extends AppCompatActivity {
         rankingCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Add your action for the "Ranking" CardView here
+                Intent intent = new Intent(MainScreen.this, UsersList.class);
+                startActivity(intent);
             }
         });
 

@@ -15,6 +15,7 @@ public class User implements Serializable {
     private String email;
     private String description;
     private String city;
+    private String badge;
     private int points;
     private ArrayList<PickUp> pickUps;
     //TODO private ArrayList<Event> events;
@@ -98,6 +99,7 @@ public class User implements Serializable {
         this.points = points;
     }
 
+
     public ArrayList<PickUp> getPickUps() {
         return pickUps;
     }
@@ -109,4 +111,11 @@ public class User implements Serializable {
         }
     }
 
+    public String getBadge() {
+        return badge;
+    }
+
+    public void setBadge(String badge) {
+        this.badge = badge;
+    }
 }

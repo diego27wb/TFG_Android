@@ -21,6 +21,12 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".UserAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".UsersList"
+            android:exported="false" />
+        <activity
             android:name=".UserProfileEdit"
             android:exported="false" />
         <activity
@@ -37,9 +43,7 @@
         </activity>
         <activity
             android:name=".PickUpList"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />
