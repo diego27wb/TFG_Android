@@ -1,10 +1,15 @@
 package com.example.prueba05;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 
-public class SerializableLatLng implements Serializable {
+import java.io.Serializable;
+
+public class SerializableLatLng implements Serializable, Parcelable {
     private double latitude;
     private double longitude;
 
@@ -35,6 +40,17 @@ public class SerializableLatLng implements Serializable {
                 "latitude=" + latitude +
                 ", longitude=" + longitude +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeDouble(latitude);
+        parcel.writeDouble(longitude);
     }
 }
 

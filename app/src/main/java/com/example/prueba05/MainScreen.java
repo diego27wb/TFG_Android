@@ -17,7 +17,8 @@ import java.util.List;
 
 public class MainScreen extends AppCompatActivity {
 
-    private List<PickUp> pickUpList;
+    private ArrayList<PickUp> pickUpList;
+    private User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,10 @@ public class MainScreen extends AppCompatActivity {
         pickUpList.add(new PickUp("Plastico", "image.png", location2, "Buena descripion", SizeEnum.XL));
         pickUpList.add(new PickUp("Bolsas", "image.png", location3, "Buena descripion", SizeEnum.XXL));
 
+        //TEST USER
+        currentUser = new User("diego27wb", "pass", "Diego Wiederkehr Bruno", "diego@gmail.com");
+        currentUser.setPickUps(pickUpList);
+        currentUser.editProfile("I am a really ecological and nature-friendly person. I love this app!", "Tenerife, Spain");
 
         CardView mapCard = findViewById(R.id.mapCard);
         CardView addPickupCard = findViewById(R.id.addPickupCard);
@@ -92,7 +97,9 @@ public class MainScreen extends AppCompatActivity {
         profileCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Add your action for the "Profile" CardView here
+                Intent intent = new Intent(MainScreen.this, UserProfile.class);
+                intent.putExtra("user", currentUser);
+                startActivity(intent);
             }
         });
 
@@ -115,6 +122,7 @@ public class MainScreen extends AppCompatActivity {
                 // Obtiene el nuevo PickUp creado y lo agrega a la lista
                 PickUp nuevoPickUp = (PickUp) data.getSerializableExtra("nuevoPickUp");
                 pickUpList.add(nuevoPickUp);
+                currentUser.getPickUps().add(nuevoPickUp);
             }
         }
     }
