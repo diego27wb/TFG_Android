@@ -1,0 +1,162 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/add_event_background"
+    tools:context=".AddEvent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="325dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <CalendarView
+                    android:id="@+id/calendarView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="298dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:columnCount="2"
+                android:rowCount="5"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp">
+
+                <!-- City -->
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="0dp"
+                    android:layout_height="70dp"
+                    android:layout_columnWeight="1"
+                    android:fontFamily="@font/coolvetica"
+                    android:gravity="center"
+                    android:text="City"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- TextView21 -->
+                <EditText
+                    android:id="@+id/textView21"
+                    android:layout_width="0dp"
+                    android:layout_height="70dp"
+                    android:layout_columnWeight="1"
+                    android:fontFamily="@font/coolvetica"
+                    android:gravity="center"
+                    android:hint="Enter a city"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <!-- Exact Place -->
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="0dp"
+                    android:layout_height="70dp"
+                    android:layout_columnWeight="1"
+                    android:fontFamily="@font/coolvetica"
+                    android:gravity="center"
+                    android:text="Exact Place"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- TextView23 -->
+                <EditText
+                    android:id="@+id/textView23"
+                    android:layout_width="0dp"
+                    android:layout_height="70dp"
+                    android:layout_columnWeight="1"
+                    android:hint="Enter the exact place"
+                    android:fontFamily="@font/coolvetica"
+                    android:gravity="center"
+                    android:textSize="18sp" />
+
+                <!-- Hour -->
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="0dp"
+                    android:layout_height="70dp"
+                    android:layout_columnWeight="1"
+                    android:fontFamily="@font/coolvetica"
+                    android:gravity="center"
+                    android:text="Hour"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- TextView25 -->
+                <EditText
+                    android:id="@+id/textView25"
+                    android:layout_width="0dp"
+                    android:layout_height="70dp"
+                    android:layout_columnWeight="1"
+                    android:hint="Enter the the hour"
+                    android:fontFamily="@font/coolvetica"
+                    android:gravity="center"
+                    android:textSize="18sp" />
+
+                <!-- Comments -->
+                <TextView
+                    android:id="@+id/textView26"
+                    android:layout_width="0dp"
+                    android:layout_height="70dp"
+                    android:layout_columnWeight="1"
+                    android:fontFamily="@font/coolvetica"
+                    android:gravity="center"
+                    android:text="Comments"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- TextView27 -->
+                <EditText
+                    android:id="@+id/textView27"
+                    android:layout_width="0dp"
+                    android:layout_height="70dp"
+                    android:layout_columnWeight="1"
+                    android:hint="Enter some comments about the event"
+                    android:fontFamily="@font/coolvetica"
+                    android:gravity="center"
+                    android:textSize="15sp" />
+
+            </GridLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/addEventButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="30dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_background"
+                    android:text="Add" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

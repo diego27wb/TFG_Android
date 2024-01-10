@@ -1,0 +1,38 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@android:color/white" />
+
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#F8BBD0"
+                android:centerColor="#FFECB3"
+                android:endColor="#B2EBF2"
+                android:angle="45"/>
+        </shape>
+    </item>
+
+    <item>
+        <shape android:shape="oval">
+            <gradient
+                android:startColor="#FFD180"
+                android:centerColor="#B2DFDB"
+                android:endColor="#FFAB91"
+                android:angle="90"/>
+        </shape>
+    </item>
+
+    <item>
+        <rotate
+            android:fromDegrees="45"
+            android:toDegrees="45">
+            <shape android:shape="rectangle">
+                <gradient
+                    android:startColor="#C5E1A5"
+                    android:centerColor="#FFCC80"
+                    android:endColor="#FF8A65"
+                    android:angle="45"/>
+            </shape>
+        </rotate>
+    </item>
+</layer-list>

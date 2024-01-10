@@ -83,7 +83,8 @@ public class MainScreen extends AppCompatActivity {
         eventsCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Add your action for the "Events" CardView here
+                Intent intent = new Intent(MainScreen.this, EventList.class);
+                startActivity(intent);
             }
         });
 
@@ -107,7 +108,8 @@ public class MainScreen extends AppCompatActivity {
         helpCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Add your action for the "Help" CardView here
+                Intent intent = new Intent(MainScreen.this, Information.class);
+                startActivity(intent);
             }
         });
     }
