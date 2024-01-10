@@ -1,9 +1,4 @@
-package com.example.prueba05;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import androidx.annotation.NonNull;
+package com.example.prueba05.objects;
 
 import java.io.Serializable;
 import java.util.ArrayList;

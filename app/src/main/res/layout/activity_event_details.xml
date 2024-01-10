@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/event_detail_background"
-    tools:context=".EventDetails">
+    tools:context=".events.EventDetails">
 
     <ScrollView
         android:layout_width="match_parent"

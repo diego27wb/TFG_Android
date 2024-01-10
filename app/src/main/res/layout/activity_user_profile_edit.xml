@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/user_profile_background"
     android:elevation="50dp"
-    tools:context=".UserProfile">
+    tools:context=".users.UserProfile">
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -76,16 +76,16 @@
                 android:text="Description"
                 android:textStyle="bold" />
 
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:id="@+id/descriptionTextField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter a brief description" />
-            </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -102,16 +102,16 @@
                 android:text="City"
                 android:textStyle="bold" />
 
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:id="@+id/cityTextField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter the name of your city" />
-            </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

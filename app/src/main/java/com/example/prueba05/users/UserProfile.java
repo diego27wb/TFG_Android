@@ -1,20 +1,18 @@
-package com.example.prueba05;
+package com.example.prueba05.users;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.location.Address;
-import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
+import com.example.prueba05.MainScreen;
+import com.example.prueba05.R;
+import com.example.prueba05.objects.User;
 
 public class UserProfile extends AppCompatActivity {
     private User currentUser;
@@ -54,15 +52,14 @@ public class UserProfile extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent1 = new Intent(UserProfile.this, UserProfileEdit.class);
                 intent1.putExtra("user", currentUser);
-                startActivity(intent1);
+                startActivityForResult(intent1, 1);
             }
         });
 
         btnDeleteProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(UserProfile.this, MainScreen.class);
-                startActivity(intent2);
+                onBackPressed();
             }
         });
 
@@ -73,6 +70,15 @@ public class UserProfile extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onBackPressed(){
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("user", this.currentUser);
+        setResult(RESULT_OK, resultIntent);
+        finish();
+        super.onBackPressed();
+    }
+
     // Método para manejar el resultado de la actividad de agregar PickUp
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -81,7 +87,7 @@ public class UserProfile extends AppCompatActivity {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             if (data != null) {
                 // Obtiene el User editado
-                User editedUser = (User) data.getSerializableExtra("userEdited");
+                User editedUser = (User) data.getSerializableExtra("updatedUser");
                 currentUser = editedUser;
                 description.setText(editedUser.getDescription());
                 location.setText(editedUser.getCity().toString());

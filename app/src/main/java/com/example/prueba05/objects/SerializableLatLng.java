@@ -1,4 +1,4 @@
-package com.example.prueba05;
+package com.example.prueba05.objects;
 
 import android.os.Parcel;
 import android.os.Parcelable;

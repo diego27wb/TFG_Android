@@ -1,4 +1,4 @@
-package com.example.prueba05;
+package com.example.prueba05.events;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,9 +13,11 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 
+import com.example.prueba05.R;
+import com.example.prueba05.objects.Event;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 public class AddEvent extends AppCompatActivity {

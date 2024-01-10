@@ -1,6 +1,4 @@
-package com.example.prueba05;
-
-import com.google.android.gms.maps.model.LatLng;
+package com.example.prueba05.objects;
 
 import java.io.Serializable;
 import java.util.UUID;

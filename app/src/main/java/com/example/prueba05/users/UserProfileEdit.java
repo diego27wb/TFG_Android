@@ -1,4 +1,4 @@
-package com.example.prueba05;
+package com.example.prueba05.users;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
+import com.example.prueba05.MainScreen;
+import com.example.prueba05.R;
+import com.example.prueba05.objects.User;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class UserProfileEdit extends AppCompatActivity {
@@ -19,27 +23,30 @@ public class UserProfileEdit extends AppCompatActivity {
         Button saveButton = findViewById(R.id.buttonSaveProfile);
         Button cancelButton = findViewById(R.id.buttonCancelProfile);
 
-        TextInputEditText description = findViewById(R.id.descriptionTextField);
-        TextInputEditText city = findViewById(R.id.cityTextField);
-
-        String description_final = description.getText().toString();
-        String city_final = city.getText().toString();
+        EditText description = findViewById(R.id.descriptionTextField);
+        EditText city = findViewById(R.id.cityTextField);
 
         User user = (User) getIntent().getSerializableExtra("user");
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UserProfileEdit.this, MainScreen.class);
-                startActivity(intent);
+                User userResponse = user;
+                userResponse.setDescription(description.getText().toString());
+                userResponse.setCity(city.getText().toString());
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("updatedUser", userResponse);
+                setResult(RESULT_OK, resultIntent);
+                finish();
             }
         });
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UserProfileEdit.this, MainScreen.class);
-                startActivity(intent);
+                Intent resultIntent = new Intent();
+                setResult(RESULT_CANCELED, resultIntent);
+                finish();
             }
         });
 

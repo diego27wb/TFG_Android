@@ -1,17 +1,18 @@
-package com.example.prueba05;
+package com.example.prueba05.users;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.example.prueba05.R;
+import com.example.prueba05.objects.User;
 
 import java.util.List;
 

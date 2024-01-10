@@ -14,9 +14,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon_image"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/icon_image"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="31">
@@ -24,28 +24,28 @@
             android:name=".Information"
             android:exported="false" />
         <activity
-            android:name=".AddEvent"
+            android:name=".events.AddEvent"
             android:exported="false" />
         <activity
-            android:name=".EventDetails"
+            android:name=".events.EventDetails"
             android:exported="false" />
         <activity
-            android:name=".EventAdapter"
+            android:name=".events.EventAdapter"
             android:exported="false" />
         <activity
-            android:name=".EventList"
+            android:name=".events.EventList"
             android:exported="false" />
         <activity
-            android:name=".UserAdapter"
+            android:name=".users.UserAdapter"
             android:exported="false" />
         <activity
-            android:name=".UsersList"
+            android:name=".users.UsersList"
             android:exported="false" />
         <activity
-            android:name=".UserProfileEdit"
+            android:name=".users.UserProfileEdit"
             android:exported="false" />
         <activity
-            android:name=".UserProfile"
+            android:name=".users.UserProfile"
             android:exported="false" />
         <activity
             android:name=".MainScreen"
@@ -57,10 +57,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".pickups.MainActivity"
             android:exported="true" />
         <activity
-            android:name=".AgregarPickUpActivity"
+            android:name=".pickups.AgregarPickUpActivity"
             android:exported="true" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
