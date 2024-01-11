@@ -15,8 +15,8 @@ import com.example.prueba05.objects.PickUp;
 import com.example.prueba05.objects.SerializableLatLng;
 import com.example.prueba05.objects.SizeEnum;
 import com.example.prueba05.objects.User;
-import com.example.prueba05.pickups.AgregarPickUpActivity;
-import com.example.prueba05.pickups.MainActivity;
+import com.example.prueba05.pickups.AddPickUp;
+import com.example.prueba05.pickups.MapPickUps;
 import com.example.prueba05.users.UserProfile;
 import com.example.prueba05.users.UsersList;
 import com.google.android.gms.maps.model.LatLng;
@@ -53,7 +53,7 @@ public class MainScreen extends AppCompatActivity {
         mapCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainScreen.this, MainActivity.class);
+                Intent intent = new Intent(MainScreen.this, MapPickUps.class);
                 ArrayList<LatLng> pickUpLocations = new ArrayList<>();
                 ArrayList<String> pickUpTitles = new ArrayList<>();
                 ArrayList<String> pickUpComments = new ArrayList<>();
@@ -76,7 +76,7 @@ public class MainScreen extends AppCompatActivity {
         addPickupCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainScreen.this, AgregarPickUpActivity.class);
+                Intent intent = new Intent(MainScreen.this, AddPickUp.class);
                 startActivityForResult(intent, 1);
             }
         });

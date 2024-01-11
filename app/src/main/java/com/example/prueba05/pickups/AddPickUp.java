@@ -41,7 +41,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
-public class AgregarPickUpActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class AddPickUp extends AppCompatActivity implements OnMapReadyCallback {
     private FusedLocationProviderClient fusedLocationClient;
     private boolean locationPermissionGranted;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
@@ -53,7 +53,7 @@ public class AgregarPickUpActivity extends AppCompatActivity implements OnMapRea
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_agregar_pickup);
+        setContentView(R.layout.activity_add_pickup);
 
         final EditText titulo = findViewById(R.id.titulo);
         final EditText description = findViewById(R.id.comments);
@@ -68,7 +68,7 @@ public class AgregarPickUpActivity extends AppCompatActivity implements OnMapRea
         getLocationPermission();
         getDeviceLocation();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(AgregarPickUpActivity.this);
+        mapFragment.getMapAsync(AddPickUp.this);
         /**
          * Foto
          */

@@ -23,26 +23,26 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback,GoogleMap.OnMarkerClickListener {
+public class MapPickUps extends AppCompatActivity implements OnMapReadyCallback,GoogleMap.OnMarkerClickListener {
 
     private GoogleMap myMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_map_pickups);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(MainActivity.this);
+        mapFragment.getMapAsync(MapPickUps.this);
     }
 
     private void agregarCentrosDeReciclaje() {
         HashMap<LatLng, String> centros = new HashMap<>();
-        centros.put(new LatLng(52.5200, 13.4050),"Berlin");
-        centros.put(new LatLng(41.89193, 12.51133),"Rome");
-        centros.put(new LatLng(51.50853, -0.12574),"London");
-        centros.put(new LatLng(50.08804, 14.42076),"Prague");
-        centros.put(new LatLng(47.36667, 8.55),"Zurich");
+        centros.put(new LatLng(52.5200, 13.4050),"BSR Recyclinghof Hegauer Weg");
+        centros.put(new LatLng(41.89193, 12.51133),"B.recycling S.r.l.");
+        centros.put(new LatLng(51.50853, -0.12574),"Kings Road Reuse and Recycling Centre");
+        centros.put(new LatLng(50.08804, 14.42076),"GLOBAL RECYCLING as");
+        centros.put(new LatLng(47.36667, 8.55),"Wertstoff-Sammelstelle");
 
         for (LatLng location : centros.keySet()) {
             String nombreCentro = centros.get(location);
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void agregarMarcadorCentroReciclaje(String texto, LatLng location){
-        float colorHue = 200;
+        float colorHue = 120;
         BitmapDescriptor blueMarkerIcon = BitmapDescriptorFactory.defaultMarker(colorHue);
         MarkerOptions markerOptions = new MarkerOptions()
                 .position(location)
@@ -104,8 +104,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         myMap.setOnMarkerClickListener(this);
 
-        /**
-         * Agregar centros de reciclaje
+        /*
+         * Add recycling centres
          */
         agregarCentrosDeReciclaje();
 
@@ -122,14 +122,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     agregarMarcadorConTexto(pickUpTitles.get(i), location, pickUpComments.get(i), pickUpSizes.get(i));
                     i++;
                 }
-            }else{
-                showToast("HOLAAAAAAA");
             }
         }
     }
-
-    private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
 }

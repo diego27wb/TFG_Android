@@ -57,10 +57,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".pickups.MainActivity"
+            android:name=".pickups.MapPickUps"
             android:exported="true" />
         <activity
-            android:name=".pickups.AgregarPickUpActivity"
+            android:name=".pickups.AddPickUp"
             android:exported="true" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
