@@ -160,9 +160,9 @@ public class MainScreen extends AppCompatActivity {
         SerializableLatLng location2 = new SerializableLatLng(39.56939, 2.65024);
         SerializableLatLng location3 = new SerializableLatLng(41.149472222222, -8.6107777777778);
 
-        pickUpList.add(new PickUp("Basura", "image.png", location, "Buena descripion", SizeEnum.L));
-        pickUpList.add(new PickUp("Plastico", "image.png", location2, "Buena descripion", SizeEnum.XL));
-        pickUpList.add(new PickUp("Bolsas", "image.png", location3, "Buena descripion", SizeEnum.XXL));
+        pickUpList.add(new PickUp("Garbage", "image.png", location, "A lot of garbage found here!", SizeEnum.L));
+        pickUpList.add(new PickUp("Plastic", "image.png", location2, "It is really sad how people waste so much plastic...", SizeEnum.XL));
+        pickUpList.add(new PickUp("Bags", "image.png", location3, "Is it so necessary to use this much plastic bags?", SizeEnum.XXL));
 
         //Current User
         currentUser = new User("diego27wb", "pass", "Diego Wiederkehr Bruno", "diego@gmail.com");

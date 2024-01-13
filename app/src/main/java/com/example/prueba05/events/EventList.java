@@ -74,11 +74,13 @@ public class EventList extends AppCompatActivity {
             }
             if (position != -1) {
                 eventList.set(position, updatedEvent);
+                orderList();
                 eventAdapter.notifyDataSetChanged();
             }
         } else if (requestCode == 2 && resultCode == RESULT_OK){
             Event newEvent = (Event) data.getSerializableExtra("newEvent");
             eventList.add(newEvent);
+            orderList();
             eventAdapter.notifyDataSetChanged();
         }
     }

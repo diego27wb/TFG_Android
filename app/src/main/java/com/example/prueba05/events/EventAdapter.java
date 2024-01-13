@@ -37,9 +37,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
 
         city.setText(event.getCity());
         date.setText(event.getDate());
-        if (event.getIsPassed() != null){
-            date.setTextColor(Color.parseColor(event.getIsPassed()));
-        }
+        date.setTextColor(Color.parseColor(event.getIsPassed()));
         people.setText(String.valueOf(event.getPeople()) + " People Assisting");
 
         return convertView;

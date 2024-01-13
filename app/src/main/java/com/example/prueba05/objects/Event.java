@@ -17,6 +17,7 @@ public class Event implements Serializable {
         this.hour = hour;
         this.comments = comments;
         this.people = people;
+        this.isPassed = "#000000";
     }
 
     public void addPeople(){
