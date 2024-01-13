@@ -170,10 +170,10 @@ public class MainScreen extends AppCompatActivity {
         currentUser.editProfile("I am a really ecological and nature-friendly person. I love this app!", "Tenerife, Spain");
 
         //Events
-        Event event = new Event("22-01-2024", "Madrid", "El Retiro", "15:00", "Let's go to pick the trash from the Retiro!", 1);
-        Event event1 = new Event("22-01-2024", "New York", "Central Park", "15:00", "Let's clean up Central Park!", 4);
-        Event event2 = new Event("23-01-2024", "London", "Hyde Park", "14:30", "Hyde Park Cleanup Day!", 6);
-        Event event3 = new Event("25-01-2024", "Tokyo", "Ueno Park", "16:00", "Join us in cleaning up Ueno Park.", 2);
+        Event event = new Event("02-01-2024", "Madrid", "El Retiro", "15:00", "Let's go to pick the trash from the Retiro!", 1);
+        Event event1 = new Event("05-01-2024", "New York", "Central Park", "15:00", "Let's clean up Central Park!", 4);
+        Event event2 = new Event("07-01-2024", "London", "Hyde Park", "14:30", "Hyde Park Cleanup Day!", 6);
+        Event event3 = new Event("11-01-2024", "Tokyo", "Ueno Park", "16:00", "Join us in cleaning up Ueno Park.", 2);
         Event event4 = new Event("28-01-2024", "Sydney", "Bondi Beach", "17:30", "Community beach cleanup event.", 10);
         Event event5 = new Event("02-02-2024", "Paris", "Bois de Vincennes", "18:00", "Let's make Bois de Vincennes clean again!", 12);
         Event event6 = new Event("05-02-2024", "Rio de Janeiro", "Copacabana Beach", "11:00", "Join us for a beach cleanup in Copacabana.", 13);

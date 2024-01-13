@@ -13,9 +13,12 @@ import android.widget.Toast;
 import com.example.prueba05.R;
 import com.example.prueba05.objects.Event;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 
 public class EventList extends AppCompatActivity {
 
@@ -70,7 +73,6 @@ public class EventList extends AppCompatActivity {
                 }
             }
             if (position != -1) {
-
                 eventList.set(position, updatedEvent);
                 eventAdapter.notifyDataSetChanged();
             }
@@ -95,6 +97,40 @@ public class EventList extends AppCompatActivity {
     }
 
     public void orderList(){
-        Collections.sort(eventList, Comparator.comparing(Event::getDate));
+        Collections.sort(eventList, new Comparator<Event>() {
+            @Override
+            public int compare(Event event, Event t1) {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
+                try{
+                    Date date1 = sdf.parse(event.getDate());
+                    Date date2 = sdf.parse(t1.getDate());
+
+                    return date1.compareTo(date2);
+                } catch (ParseException e){
+                    e.printStackTrace();
+                    return 0;
+                }
+            }
+        });
+        Collections.reverse(eventList);
+
+        dateIsPassed();
+    }
+
+    public void dateIsPassed(){
+        Date actualDate = new Date();
+         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
+         try {
+             for (Event event : eventList) {
+                 Date eventDate = sdf.parse(event.getDate());
+                 if (eventDate.before(actualDate)){
+                     event.setIsPassed("#FF0000");
+                 }
+             }
+         } catch(ParseException e){
+             e.printStackTrace();
+         }
     }
 }

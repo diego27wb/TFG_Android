@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,9 @@ public class EventAdapter extends ArrayAdapter<Event> {
 
         city.setText(event.getCity());
         date.setText(event.getDate());
+        if (event.getIsPassed() != null){
+            date.setTextColor(Color.parseColor(event.getIsPassed()));
+        }
         people.setText(String.valueOf(event.getPeople()) + " People Assisting");
 
         return convertView;

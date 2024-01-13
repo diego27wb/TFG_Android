@@ -24,15 +24,10 @@ public class EventDetails extends AppCompatActivity {
         Button saveButton = findViewById(R.id.addButton);
         Button cancelButton = findViewById(R.id.cancelButton);
         TextView date = findViewById(R.id.textView19);
-        TextView city = findViewById(R.id.textView20);
         TextView city_value = findViewById(R.id.textView21);
-        TextView exact_place = findViewById(R.id.textView22);
         TextView exact_place_value = findViewById(R.id.textView23);
-        TextView hour = findViewById(R.id.textView24);
         TextView hour_value = findViewById(R.id.textView25);
-        TextView comments = findViewById(R.id.textView26);
         TextView comments_value = findViewById(R.id.textView27);
-        TextView people_assisting = findViewById(R.id.textView28);
         TextView people_assisting_value = findViewById(R.id.textView29);
 
         date.setText(event.getDate());
@@ -67,9 +62,5 @@ public class EventDetails extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

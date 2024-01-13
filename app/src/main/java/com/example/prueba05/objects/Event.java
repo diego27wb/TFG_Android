@@ -8,6 +8,7 @@ public class Event implements Serializable {
     private String exact_place;
     private String hour;
     private String comments;
+    private String isPassed;
     private int people;
     public Event(String date, String city, String exact_place, String hour, String comments, int people){
         this.date = date;
@@ -58,6 +59,14 @@ public class Event implements Serializable {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getIsPassed() {
+        return isPassed;
+    }
+
+    public void setIsPassed(String isPassed) {
+        this.isPassed = isPassed;
     }
 
     public String getExact_place() {
